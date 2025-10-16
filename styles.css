@@ -1,0 +1,791 @@
+/* ================= ROOT VARIABLES ================= */
+:root {
+  --deep-blue: #05204b;
+  --royal-blue: #0b3d91;
+  --gold: #d4af37;
+  --light-gold: #f5d76e;
+  --silver: #5f7cfd;
+  --muted-gray: #1469be;
+  --dark-bg: #0a0a0f;
+  --text-light: #ffffff;
+  --text-dark: #08101a;
+  --transition-speed: 0.4s;
+}
+
+/* ================= GLOBAL ================= */
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, Arial, sans-serif;
+  background: linear-gradient(180deg, #e0e5f5, #a6bfdf);
+  color: var(--text-dark);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  transition: all var(--transition-speed) ease-in-out;
+}
+
+/* ================= HEADINGS ================= */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Cinzel", serif;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+.section-title {
+  font-size: 2.2rem;
+  color: var(--deep-blue);
+  position: relative;
+  text-align: center;
+  animation: fadeInDown 1s ease forwards;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--light-gold));
+  margin: 10px auto 0;
+  border-radius: 3px;
+  box-shadow: 0 0 15px var(--gold);
+}
+
+/* همه اسلایدها ارتفاع برابر داشته باشن */
+#heroCarousel,
+#heroCarousel .carousel-inner,
+#heroCarousel .carousel-item {
+  height: 100vh;
+}
+
+/* عکس‌ها و ویدیوها داخل اسلاید */
+#heroCarousel img,
+#heroCarousel video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* پر کردن بدون کشیدگی */
+}
+
+/* پس‌زمینه تاریک */
+.lightbox {
+  display: none; /* اول پنهان باشه */
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* عکس بزرگ شده */
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+  animation: zoomIn 0.4s ease;
+}
+
+/* افکت بزرگ شدن */
+@keyframes zoomIn {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+/* ================= BUTTONS ================= */
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold), var(--light-gold));
+  color: var(--text-dark);
+  border-radius: 10px;
+  padding: 0.7rem 1.5rem;
+  font-weight: 600;
+  box-shadow: 0 6px 25px rgba(212, 175, 55, 0.35);
+  transition: all 0.4s ease;
+}
+
+.btn-gold:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 35px rgba(245, 215, 110, 0.6);
+  background: linear-gradient(135deg, var(--light-gold), var(--gold));
+}
+
+.btn-outline-gold {
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  background: transparent;
+  padding: 0.6rem 1.3rem;
+  border-radius: 8px;
+  transition: all 0.4s ease;
+}
+
+.btn-outline-gold:hover {
+  background: var(--gold);
+  color: var(--text-dark);
+  box-shadow: 0 0 15px rgba(245, 215, 110, 0.6);
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  padding: 1rem 0;
+  background: linear-gradient(90deg, var(--deep-blue), var(--royal-blue));
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.nav-link {
+  color: var(--text-light) !important;
+  font-weight: 500;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--light-gold) !important;
+  text-shadow: 0 0 8px var(--gold);
+}
+
+/* ================= HERO ================= */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  padding-top: 80px;
+  z-index: 1;
+}
+
+.hero-video {
+  width: 100%;
+  max-height: 75vh;
+  object-fit: cover;
+  filter: brightness(0.75);
+  animation: zoomIn 10s infinite alternate;
+  padding-top: 400px;
+}
+
+.carousel-caption {
+  background: rgba(5, 20, 50, 0.55);
+  padding: 1.5rem 2rem;
+  border-radius: 15px;
+  animation: fadeInUp 1s ease forwards;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* ================= CARDS ================= */
+.card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+.card img {
+  transition: transform 0.5s ease;
+}
+
+.card:hover img {
+  transform: scale(1.08);
+}
+
+/* ================= TABLE ================= */
+.table th {
+  background: var(--deep-blue);
+  color: var(--text-light);
+  box-shadow: inset 0 -3px 0 var(--gold);
+}
+
+.table td {
+  vertical-align: middle;
+  transition: background 0.3s ease;
+}
+
+.table tr:hover td {
+  background: #f5f5f5;
+}
+
+/* ================= GALLERY ================= */
+.gallery-thumb {
+  cursor: pointer;
+  border-radius: 12px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gallery-thumb:hover {
+  transform: scale(1.07);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+/* ================= DARK MODE ================= */
+body.dark-mode {
+  background: var(--dark-bg);
+  color: var(--text-light);
+}
+
+body.dark-mode .navbar {
+  background: linear-gradient(90deg, #081233, #0b1d4b);
+}
+
+body.dark-mode .section-title {
+  color: var(--light-gold);
+  text-shadow: 0 0 10px rgba(245, 215, 110, 0.7);
+}
+
+body.dark-mode .btn-outline-gold {
+  color: var(--light-gold);
+  border-color: var(--light-gold);
+}
+
+body.dark-mode .table th {
+  background: #0b1d4b;
+}
+footer {
+  background: linear-gradient(90deg, #172030, 0b3d91);
+  color: white;
+  padding: 2rem 0;
+  text-align: center;
+}
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .carousel-caption {
+    font-size: 0.9rem;
+    padding: 1rem;
+  }
+  .section-title {
+    font-size: 1.6rem;
+  }
+}
+/* ================= FOOTER ================= */
+.site-footer {
+  background: linear-gradient(90deg, #172030, #0b3d91); /* مثل navbar */
+  color: #fff;
+  padding: 3rem 0 1rem;
+}
+
+.site-footer .text-gold {
+  color: #d4af37;
+}
+
+.footer-link {
+  color: #ddd;
+  font-size: 0.95rem;
+  transition: color 0.3s;
+}
+
+.footer-link:hover {
+  color: #f5d76e;
+  text-decoration: underline;
+}
+
+.footer-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #d4af37;
+  border-radius: 50%;
+  color: #d4af37;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.footer-social:hover {
+  background: #d4af37;
+  color: #172030;
+}
+.gallery-thumb {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+/* ========== DARK MODE TABLE STYLING ========== */
+body.dark-mode .theme-table {
+  background-color: #0b0e1a !important; /* پس‌زمینه تیره */
+  color: #e6e6e6 !important; /* رنگ متن */
+  border-color: #444 !important; /* خطوط */
+}
+
+body.dark-mode .theme-table th,
+body.dark-mode .theme-table td {
+  background-color: #111627 !important;
+  color: #f0f0f0 !important;
+  border-color: #333 !important;
+}
+
+body.dark-mode .theme-table thead {
+  background-color: #0f1a2f !important;
+  color: #fff !important;
+}
+
+body.dark-mode .theme-table tbody tr:hover {
+  background-color: #1a2540 !important; /* افکت hover */
+}
+
+/* حالت روز (اختیاری برای هماهنگی) */
+.theme-table {
+  transition: all 0.4s ease;
+}
+.card {
+  height: 100%;
+}
+/* ========== DARK MODE CARDS ========== */
+body.dark-mode .card {
+  background-color: #101626 !important; /* رنگ زمینه کارت */
+  color: #f0f0f0 !important; /* رنگ نوشته‌ها */
+  border-color: #222 !important; /* حاشیه */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .card img {
+  filter: brightness(0.8); /* عکس‌ها کمی تیره‌تر بشن در حالت شب */
+  transition: filter 0.3s ease;
+}
+
+body.dark-mode .card:hover img {
+  filter: brightness(1);
+}
+/* === Dining section color fixes === */
+
+/* حالت روز */
+body:not(.dark-mode) #dining {
+  background-color: #f8f9fa !important; /* روشن مثل بقیه بخش‌ها */
+  color: #212529 !important; /* نوشته تیره */
+}
+
+body:not(.dark-mode) #dining h2,
+body:not(.dark-mode) #dining h5,
+body:not(.dark-mode) #dining h6,
+body:not(.dark-mode) #dining p {
+  color: #212529 !important;
+}
+
+body:not(.dark-mode) #dining .card {
+  background-color: #fff !important;
+  border-color: #ddd !important;
+}
+
+/* حالت شب */
+body.dark-mode #dining {
+  background-color: #111 !important;
+  color: #f8f9fa !important;
+}
+
+body.dark-mode #dining h2,
+body.dark-mode #dining h5,
+body.dark-mode #dining h6,
+body.dark-mode #dining p {
+  color: #f8f9fa !important;
+}
+
+body.dark-mode #dining .card {
+  background-color: transparent !important;
+  border-color: #555 !important;
+}
+/* ========== Smooth Theme Transition ========== */
+body,
+.theme-section,
+.card,
+.navbar,
+footer,
+section,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  transition: background-color 0.6s ease, color 0.6s ease,
+    border-color 0.6s ease;
+}
+/* ================= Login Icon ================= */
+.login-icon {
+  position: fixed;
+  top: 20px;
+  right: 20px; /* کنار دکمه رزرو */
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #f5d76e, #d4af37);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  z-index: 2000;
+}
+
+.login-icon:hover {
+  transform: scale(1.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* ================= Login Modal ================= */
+.login-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+}
+
+/* ================= Login Content ================= */
+.login-content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: slideDown 0.4s ease;
+}
+/* ================= Login Modal ================= */
+.login-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* نیمه شفاف پشت پنجره */
+  backdrop-filter: blur(6px); /* تاری پس‌زمینه */
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+}
+
+/* ================= Login Content ================= */
+.login-content {
+  background: rgba(255, 255, 255, 0.15); /* شیشه‌ای شفاف */
+  backdrop-filter: blur(12px); /* تاری پشت فرم */
+  border-radius: 20px;
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3); /* لبه‌ی شیشه‌ای */
+  position: relative;
+  animation: slideDown 0.4s ease;
+  color: #fff; /* متن روشن روی شیشه */
+}
+
+.login-content input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 12px 0;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 16px;
+}
+
+.login-content input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.login-content button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  background: linear-gradient(135deg, #f5d76e, #d4af37);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.login-content button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #fff;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #f5d76e;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #f5d76e;
+}
+
+/* Form Inputs */
+.login-content input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+/* Submit Button */
+.login-content button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  background: linear-gradient(135deg, #f5d76e, #d4af37);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.login-content button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Forgot Password */
+.forgot-pass {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.forgot-pass a {
+  color: #d4af37;
+  text-decoration: none;
+}
+
+.forgot-pass a:hover {
+  text-decoration: underline;
+}
+
+.login-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f5d76e, #f5c400);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  z-index: 2000;
+}
+
+.login-btn.move-down {
+  top: 80px; /* وقتی منوی همبرگری باز است */
+}
+
+/* ================= RWD ================= */
+@media (max-width: 768px) {
+  .login-icon {
+    right: 80px; /* کنار همبرگری */
+  }
+}
+
+/* بخش ریزیرویشن  */
+
+body {
+  font-family: "Arial", sans-serif;
+  background: #fdfcf9;
+}
+
+h1 {
+  color: #556adf;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #a0d6f7, #1e34fc);
+  color: #222;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(245, 215, 110, 0.5);
+}
+
+.btn-gold:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 35px rgba(245, 215, 110, 0.7);
+}
+
+.form-label {
+  font-weight: 600;
+}
+
+#totalPrice {
+  color: #bfa14b;
+  font-weight: bold;
+}
+/* پن */
+.booking-modal {
+  display: none; /* ابتدا مخفی */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+}
+
+.booking-modal .booking-content {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* تنظیم فوتر برای موبایل */
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 20px 10px !important;
+  }
+
+  .site-footer .row > div {
+    margin-bottom: 15px;
+  }
+
+  .site-footer p,
+  .site-footer a,
+  .site-footer h6 {
+    font-size: 14px !important;
+    line-height: 1.4;
+  }
+
+  .site-footer img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .site-footer .d-flex.gap-3 {
+    gap: 1rem !important;
+  }
+}
