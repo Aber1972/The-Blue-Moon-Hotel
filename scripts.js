@@ -195,3 +195,53 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 5000);
   });
 });
+
+// ddddddddd
+
+let clickCount = 0;
+const logo = document.querySelector("img[alt='Blue Moon logo']");
+const vipOverlay = document.getElementById("vipOverlay");
+
+if (logo) {
+  logo.addEventListener("click", () => {
+    clickCount++;
+    if (clickCount === 3) {
+      activateVIP();
+      clickCount = 0;
+    }
+    setTimeout(() => (clickCount = 0), 2000); // اگه فاصله زیاد شد ریست کن
+  });
+}
+
+function activateVIP() {
+  document.body.classList.add("vip-mode");
+  vipOverlay.style.display = "flex";
+
+  setTimeout(() => {
+    vipOverlay.style.opacity = "0";
+    setTimeout(() => {
+      vipOverlay.style.display = "none";
+      vipOverlay.style.opacity = "1";
+    }, 1000);
+  }, 5000);
+}
+// 💫 کرسر نئونی با دنباله طلایی
+document.addEventListener("mousemove", (e) => {
+  let cursor = document.querySelector(".neon-cursor");
+  if (!cursor) {
+    cursor = document.createElement("div");
+    cursor.className = "neon-cursor";
+    document.body.appendChild(cursor);
+  }
+
+  cursor.style.left = e.clientX + "px";
+  cursor.style.top = e.clientY + "px";
+
+  const trail = document.createElement("div");
+  trail.className = "trail";
+  trail.style.left = e.clientX + "px";
+  trail.style.top = e.clientY + "px";
+  document.body.appendChild(trail);
+
+  setTimeout(() => trail.remove(), 800);
+});
