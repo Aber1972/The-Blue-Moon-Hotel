@@ -1,0 +1,7 @@
+[
+  { "name": "Deluxe Room", "price": 220 },
+  { "name": "Executive Room", "price": 420 },
+  { "name": "Junior Suite", "price": 650 },
+  { "name": "Executive Suite", "price": 1200 },
+  { "name": "VIP Penthouse", "price": 5500 }
+]
